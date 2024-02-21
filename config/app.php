@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'notification_url' => env('NOTIFICATION_URL', 'https://webhook.site/19cd79e4-2df8-4ff1-80c6-647f6172f801'),
 ];
