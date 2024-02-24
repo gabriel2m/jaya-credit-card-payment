@@ -7,7 +7,7 @@ use App\Enums\PayerType;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -41,8 +41,8 @@ class Payer extends Model
         'type' => PayerType::CUSTOMER->value,
     ];
 
-    public function payerIdentification(): HasOne
+    public function payer_identification(): BelongsTo
     {
-        return $this->hasOne(PayerIdentification::class);
+        return $this->belongsTo(PayerIdentification::class);
     }
 }

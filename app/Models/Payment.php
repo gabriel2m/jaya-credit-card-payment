@@ -6,7 +6,7 @@ use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -57,8 +57,8 @@ class Payment extends Model
         ];
     }
 
-    public function payer(): HasOne
+    public function payer(): BelongsTo
     {
-        return $this->hasOne(Payer::class);
+        return $this->belongsTo(Payer::class);
     }
 }
