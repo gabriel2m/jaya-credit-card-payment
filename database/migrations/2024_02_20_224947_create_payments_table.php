@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->float('transaction_amount');
+            $table->float('transaction_amount', 11);
             $table->integer('installments');
             $table->string('token');
             $table->string('payment_method_id');
