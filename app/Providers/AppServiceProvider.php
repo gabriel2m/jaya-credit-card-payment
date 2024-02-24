@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Faker\CPFProvider;
+use Faker\Generator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->extend(Generator::class.':'.app('config')->get('app.faker_locale'), function (Generator $faker) {
+            $faker->addProvider(new CPFProvider($faker));
+
+            return $faker;
+        });
     }
 
     /**
