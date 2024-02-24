@@ -38,10 +38,9 @@ class Payment extends Model
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
         'status' => PaymentStatus::class,
     ];
-
-    protected $attributes;
 
     public function __construct(array $attributes = [])
     {
@@ -49,7 +48,10 @@ class Payment extends Model
         parent::__construct($attributes);
     }
 
-    public function attributes(): array
+    /**
+     * Default values for attributes.
+     */
+    protected function attributes(): array
     {
         return [
             'status' => PaymentStatus::PENDING->value,
