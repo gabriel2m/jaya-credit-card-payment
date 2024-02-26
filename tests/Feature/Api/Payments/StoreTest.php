@@ -59,7 +59,7 @@ class StoreTest extends TestCase
             'transaction_amount empty' => ['transaction_amount', ''],
             'transaction_amount string' => ['transaction_amount', 'invalid'],
             'transaction_amount too low' => ['transaction_amount', 0],
-            'transaction_amount too big' => ['transaction_amount', 1000000000],
+            'transaction_amount too big' => ['transaction_amount', PHP_INT_MAX],
             'transaction_amount too many decimals' => ['transaction_amount', '0.001'],
             'installments empty' => ['installments', ''],
             'installments string' => ['installments', 'invalid'],

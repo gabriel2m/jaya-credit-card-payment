@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Casts\Money;
 use App\Enums\PaymentStatus;
+use Brick\Money\Money as BrickMoney;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +13,7 @@ use Illuminate\Support\Carbon;
 
 /**
  * @property string $id
- * @property float $transaction_amount
+ * @property BrickMoney $transaction_amount
  * @property int $installments
  * @property string $token
  * @property string $payment_method_id
@@ -37,6 +39,7 @@ class Payment extends Model
     ];
 
     protected $casts = [
+        'transaction_amount' => Money::class,
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
         'status' => PaymentStatus::class,

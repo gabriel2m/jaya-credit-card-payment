@@ -29,7 +29,7 @@ class StorePaymentRequest extends FormRequest
                 'required',
                 'numeric',
                 'gt:0',
-                'max:999999999',
+                'max:'.max_amount_float_value(),
                 'regex:/^\d+(\.\d{1,2})?$/',
             ],
             'installments' => [

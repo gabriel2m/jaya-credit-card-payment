@@ -19,7 +19,7 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'transaction_amount' => fake()->randomFloat(nbMaxDecimals: 2, min: 0.01, max: 999999999),
+            'transaction_amount' => fake()->randomFloat(nbMaxDecimals: 2, min: 0.01, max: max_amount_float_value()),
             'installments' => fake()->numberBetween(1, 999),
             'token' => fake()->regexify('[A-Za-z0-9]{32}'),
             'payment_method_id' => fake()->creditCardType(),
