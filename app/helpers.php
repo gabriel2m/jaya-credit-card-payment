@@ -6,7 +6,7 @@ use Brick\Money\Context;
 use Brick\Money\Currency;
 use Brick\Money\Money;
 
-if (!function_exists('money')) {
+if (! function_exists('money')) {
     /**
      * Returns a Money of the given amount.
      *
@@ -22,16 +22,17 @@ if (!function_exists('money')) {
     }
 }
 
-if (!function_exists('max_amount_float_value')) {
+if (! function_exists('max_amount_float_value')) {
     /**
      * Max supported float value for money amount by currency default fraction digits.
      */
     function max_amount_float_value(Currency|string|int|null $currency = null): float
     {
         $currency ??= config('app.currency');
-        if (!$currency instanceof Currency) {
+        if (! $currency instanceof Currency) {
             $currency = Currency::of($currency);
         }
+
         return PHP_INT_MAX / (10 ** $currency->getDefaultFractionDigits());
     }
 }

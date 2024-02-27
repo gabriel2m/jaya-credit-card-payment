@@ -34,7 +34,6 @@ abstract class TestCase extends BaseTestCase
             Payment::factory()
                 ->makeOne(['payer_id' => null])
                 ->setVisible($this->payment_data_attrs)
-                ->toArray()
         )->put(
             'payer',
             collect(
@@ -46,7 +45,6 @@ abstract class TestCase extends BaseTestCase
                 PayerIdentification::factory()
                     ->makeOne()
                     ->setVisible($this->payer_identification_data_attrs)
-                    ->toArray()
             )
         );
     }
@@ -63,7 +61,7 @@ abstract class TestCase extends BaseTestCase
         );
         $this->assertEquals(
             $payment->payer->payer_identification->setVisible($this->payer_identification_data_attrs)->toArray(),
-            $data->get('payer')->get('identification')
+            $data->get('payer')->get('identification')->toArray()
         );
     }
 }
