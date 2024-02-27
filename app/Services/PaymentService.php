@@ -41,4 +41,11 @@ class PaymentService implements PaymentServiceContract
             ->setAttribute('status', PaymentStatus::PAID)
             ->save();
     }
+
+    public function cancel(Payment $payment): bool
+    {
+        return $payment
+            ->setAttribute('status', PaymentStatus::CANCELED)
+            ->save();
+    }
 }

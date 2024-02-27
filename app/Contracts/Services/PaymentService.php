@@ -15,4 +15,9 @@ interface PaymentService
      * Set the payment as paid in storage.
      */
     public function confirm(Payment $payment): bool;
+
+    /**
+     * Set the payment as canceled in storage.
+     */
+    public function cancel(Payment $payment): bool;
 }

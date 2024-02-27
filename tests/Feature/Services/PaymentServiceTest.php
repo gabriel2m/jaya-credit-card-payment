@@ -40,4 +40,16 @@ class PaymentServiceTest extends TestCase
             'status' => PaymentStatus::PAID->value,
         ]);
     }
+
+    public function test_can_cancel_a_payment(): void
+    {
+        $payment = Payment::factory()->create();
+
+        $this->paymentService->cancel($payment);
+
+        $this->assertDatabaseHas($payment->getTable(), [
+            'id' => $payment->id,
+            'status' => PaymentStatus::CANCELED->value,
+        ]);
+    }
 }
