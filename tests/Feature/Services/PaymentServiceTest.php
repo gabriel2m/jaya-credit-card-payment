@@ -11,12 +11,35 @@ class PaymentServiceTest extends TestCase
 {
     use RefreshDatabase;
 
+    public PaymentService $paymentService;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->paymentService = app(PaymentService::class);
+    }
+
     public function test_can_creat_a_payment(): void
     {
         $data = $this->newPaymentData();
 
-        app(PaymentService::class)->create($data->toArray());
+        $this->paymentService->create($data->toArray());
 
         $this->assertPaymentData(Payment::first(), $data);
+    }
+
+    public function test_can_update_a_payment(): void
+    {
+        $payment = Payment::factory()->create();
+        $data = Payment::factory()->make()->toArray();
+
+        $this->paymentService->update($payment, $data);
+
+        $payment->refresh();
+
+        $this->assertEquals(
+            $payment->setVisible(array_keys($data))->toArray(),
+            $data
+        );
     }
 }

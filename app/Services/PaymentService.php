@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class PaymentService implements PaymentServiceContract
 {
-    /**
-     * Store a newly created Payment in storage.
-     */
     public function create(array $data): Payment
     {
         $data = collect($data)->dot();
@@ -35,5 +32,12 @@ class PaymentService implements PaymentServiceContract
                 ])->toArray()
             );
         });
+    }
+
+    public function update(Payment $payment, array $data): bool
+    {
+        return $payment
+            ->fill($data)
+            ->save();
     }
 }
