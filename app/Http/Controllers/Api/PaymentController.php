@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Services\PaymentService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConfirmPaymentRequest;
 use App\Http\Requests\StorePaymentRequest;
-use App\Http\Requests\UpdatePaymentRequest;
 use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -60,11 +60,15 @@ class PaymentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Set the payment as paid in storage.
      */
-    public function update(UpdatePaymentRequest $request, Payment $payment)
+    public function confirm(ConfirmPaymentRequest $request, Payment $payment, PaymentService $paymentService)
     {
-        //
+        if (! $paymentService->confirm($payment)) {
+            return $this->fail();
+        }
+
+        return response(status: Response::HTTP_NO_CONTENT);
     }
 
     /**
