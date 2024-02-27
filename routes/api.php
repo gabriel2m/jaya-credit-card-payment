@@ -21,10 +21,11 @@ Route::middleware(ClientOrAuthApi::class)->group(function () {
     Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
     Route::missing(
         fn () => response()->json([
-            'message' => 'Bankslip not found with the specified id',
+            'message' => 'Payment not found with the specified id',
         ], Response::HTTP_NOT_FOUND)
     )->group(function () {
         Route::get('payments/{payment}', [PaymentController::class, 'show'])->name('payments.show');
         Route::patch('payments/{payment}', [PaymentController::class, 'confirm'])->name('payments.confirm');
+        Route::delete('payments/{payment}', [PaymentController::class, 'cancel'])->name('payments.cancel');
     });
 });

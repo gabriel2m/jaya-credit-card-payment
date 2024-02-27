@@ -72,11 +72,15 @@ class PaymentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Set the payment as canceled in storage.
      */
-    public function destroy(Payment $payment)
+    public function cancel(Payment $payment, PaymentService $paymentService)
     {
-        //
+        if (! $paymentService->cancel($payment)) {
+            return $this->fail();
+        }
+
+        return response(status: Response::HTTP_NO_CONTENT);
     }
 
     /**
