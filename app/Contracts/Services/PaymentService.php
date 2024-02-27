@@ -7,12 +7,12 @@ use App\Models\Payment;
 interface PaymentService
 {
     /**
-     * Store a newly created Payment in storage.
+     * Store a newly created payment in storage.
      */
     public function create(array $data): Payment;
 
     /**
-     * Update the specified resource in storage.
+     * Set the payment as paid in storage.
      */
-    public function update(Payment $payment, array $data): bool;
+    public function confirm(Payment $payment): bool;
 }

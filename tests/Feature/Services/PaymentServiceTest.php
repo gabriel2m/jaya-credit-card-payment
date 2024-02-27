@@ -3,6 +3,7 @@
 namespace Tests\Feature\Services;
 
 use App\Contracts\Services\PaymentService;
+use App\Enums\PaymentStatus;
 use App\Models\Payment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -28,18 +29,15 @@ class PaymentServiceTest extends TestCase
         $this->assertPaymentData(Payment::first(), $data);
     }
 
-    public function test_can_update_a_payment(): void
+    public function test_can_confirm_a_payment(): void
     {
         $payment = Payment::factory()->create();
-        $data = Payment::factory()->make()->toArray();
 
-        $this->paymentService->update($payment, $data);
+        $this->paymentService->confirm($payment);
 
-        $payment->refresh();
-
-        $this->assertEquals(
-            $payment->setVisible(array_keys($data))->toArray(),
-            $data
-        );
+        $this->assertDatabaseHas($payment->getTable(), [
+            'id' => $payment->id,
+            'status' => PaymentStatus::PAID->value,
+        ]);
     }
 }

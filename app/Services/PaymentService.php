@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\Services\PaymentService as PaymentServiceContract;
+use App\Enums\PaymentStatus;
 use App\Models\Payer;
 use App\Models\PayerIdentification;
 use App\Models\Payment;
@@ -34,10 +35,10 @@ class PaymentService implements PaymentServiceContract
         });
     }
 
-    public function update(Payment $payment, array $data): bool
+    public function confirm(Payment $payment): bool
     {
         return $payment
-            ->fill($data)
+            ->setAttribute('status', PaymentStatus::PAID)
             ->save();
     }
 }
