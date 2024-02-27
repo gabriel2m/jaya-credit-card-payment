@@ -33,6 +33,6 @@ if (! function_exists('max_amount_float_value')) {
             $currency = Currency::of($currency);
         }
 
-        return PHP_INT_MAX / (10 ** $currency->getDefaultFractionDigits());
+        return 2_147_483_647 / (10 ** $currency->getDefaultFractionDigits());
     }
 }
