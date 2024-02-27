@@ -38,6 +38,10 @@ class PaymentController extends Controller
             app(StorePaymentRequest::class)->validated()
         );
 
+        if (! $payment->exists) {
+            return $this->fail();
+        }
+
         return response()->json(
             $payment->setVisible([
                 'id',
@@ -69,5 +73,15 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         //
+    }
+
+    /**
+     * Fail response.
+     */
+    private function fail()
+    {
+        return response()->json([
+            'message' => 'something went wrong',
+        ], Response::HTTP_BAD_REQUEST);
     }
 }
