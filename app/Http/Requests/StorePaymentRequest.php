@@ -27,10 +27,9 @@ class StorePaymentRequest extends FormRequest
         return [
             'transaction_amount' => [
                 'required',
-                'numeric',
+                'decimal:0,2',
                 'gt:0',
                 'max:'.max_amount_float_value(),
-                'regex:/^\d+(\.\d{1,2})?$/',
             ],
             'installments' => [
                 'required',
