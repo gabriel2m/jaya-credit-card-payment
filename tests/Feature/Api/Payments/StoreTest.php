@@ -66,7 +66,7 @@ class StoreTest extends TestCase
             'payer string' => ['payer', 'invalid'],
             'payer.email empty' => ['payer.email', ''],
             'payer.email invalid' => ['payer.email', 'invalid'],
-            'payer.email too long' => ['payer.email', str_repeat('a', 255) . fake()->email()],
+            'payer.email too long' => ['payer.email', str_repeat('a', 255).fake()->email()],
             'payer.identification.type empty' => ['payer.identification.type', ''],
             'payer.identification.type invalid' => ['payer.identification.type', 'invalid-type'],
             'payer.identification.number empty' => ['payer.identification.number', ''],
