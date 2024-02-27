@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Middleware\ClientOrAuthApi;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(ClientOrAuthApi::class)->group(function () {
     Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('payments/{payment}', [PaymentController::class, 'show'])
+        ->name('payments.show')
+        ->missing(
+            fn () => response()->json([
+                'message' => 'Bankslip not found with the specified id',
+            ], Response::HTTP_NOT_FOUND)
+        );
 });
