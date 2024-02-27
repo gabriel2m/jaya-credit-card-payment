@@ -9,13 +9,21 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Passport\Passport;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Feature\Atoms\TestNeedsValidToken;
 use Tests\TestCase;
 
 class StoreTest extends TestCase
 {
-    use RefreshDatabase,
-        TestNeedsValidToken;
+    use RefreshDatabase;
+
+    public function test_needs_valid_token(): void
+    {
+        $this
+            ->postJson(
+                route('payments.store'),
+                headers: ['Authorization' => 'Bearer not-valid-token']
+            )
+            ->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
 
     public function test_needs_request_body(): void
     {
