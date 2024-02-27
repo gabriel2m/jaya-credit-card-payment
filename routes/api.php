@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(ClientOrAuthApi::class)->group(function () {
+    Route::get('payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::post('payments', [PaymentController::class, 'store'])->name('payments.store');
 });
