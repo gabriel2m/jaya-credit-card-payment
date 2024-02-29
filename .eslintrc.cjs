@@ -34,5 +34,6 @@ module.exports = {
   },
   globals: {
     route: "readonly",
+    axios: "readonly",
   }
 };

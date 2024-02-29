@@ -6,9 +6,7 @@
 
 import axios from 'axios';
 window.axios = axios;
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import { initMercadoPago } from '@mercadopago/sdk-react';
-
 initMercadoPago(import.meta.env.VITE_MERCADO_PAGO_PUBLIC_KEY);
