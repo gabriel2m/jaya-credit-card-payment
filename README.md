@@ -6,12 +6,10 @@
     </picture>
 </p>
 
-## About
-
+## Getting Started
 This application has two modules: a credit card payment management Rest API using [Laravel](https://laravel.com/) and a web interface for making credit card payments using [React](https://react.dev/).
 
 ### API
-
 The API its prefixed with '**rest**' and counts with the following endpoints:
 
 - \[POST\] **/payments** - create a payment
@@ -26,10 +24,14 @@ To access the API you need to have a valid OAuth JWT token.
 
 OAuth API default url: [http://localhost/oauth](http://localhost/oauth)
 
-The OAuth support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate client credentials grant tokens.
+The OAuth support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate the access tokens.
+
+If you want to create another client:
+```sh
+./vendor/bin/sail artisan passport:client --client
+```
 
 #### Create OAuth JWT token
-
 Default url: [http://localhost/oauth/token](http://localhost/oauth/token)
 
 You can create a token by making a **POST** request to the token endpoint using the following payload:
@@ -42,10 +44,41 @@ You can create a token by making a **POST** request to the token endpoint using 
 }
 ```
 
-For more details access the [Laravel Passport](https://laravel.com/docs/10.x/passport) documentation.
+For more details access the Laravel Passport [documentation](https://laravel.com/docs/10.x/passport).
+
+### Web Interface
+Default url: [http://localhost](http://localhost)
+
+That's the welcome page:
+<img alt="welcome page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/welcome.png?raw=true" />
+
+In order to access the payment form you need to create a user on the register page:
+<img alt="register page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/register.png?raw=true" />
+
+Once created you're redirected to the dashboard page were is the payment form:
+<img alt="dashboard page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/dashboard.png?raw=true" />
+
+#### Mailpit
+Mailpit is the default application email host where you can access the sent emails.
+
+Default url: [http://localhost:8025](http://localhost:8025)
+
+### CLI
+For the docker environment and cli commands we use [Sail](https://laravel.com/docs/10.x/sail). The commands list:
+```sh
+./vendor/bin/sail
+```
+If want to configure a shell alias:
+```sh
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
+```
+Start the application:
+```sh
+./vendor/bin/sail up -d
+```
+For more details access the sail [documentation](https://laravel.com/docs/10.x/sail).
 
 ## Install
-
 To install this application first you have to have installed **[docker](https://docs.docker.com/engine/install)** and **[docker compose](https://docs.docker.com/compose/install)**.
 
 Once you have them you just need to run the **install** script.
@@ -56,9 +89,11 @@ sh install
 
 **Don't forget** to save Client ID and Client secret.
 
-After install you **need** to set the following environment variables on your .env file:
+After install you **need** to set the following environment variables in your .env file:
 - **VITE_MERCADO_PAGO_PUBLIC_KEY** - mercado pago public key, you can learn how to get this value on: [https://www.mercadopago.com.br/help/20214](https://www.mercadopago.com.br/help/20214)
 
 You can also edit:
 - **NOTIFICATION_URL** - the notification url used on payment creation (default: https://webhook.site/19cd79e4-2df8-4ff1-80c6-647f6172f801)
 - **CURRENCY** - the default currency used to manage the payment transaction amount, needs to be a valid currency code - see  [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (default: BRL)
+
+See more configs in the Laravel [documentation](https://laravel.com/docs/10.x).
