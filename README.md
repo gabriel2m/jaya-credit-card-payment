@@ -8,7 +8,7 @@
 
 ## About
 
-This application was created using the Laravel and React frameworks has two modules: a credit card payment management Rest API and a React web interface for making credit card payments.
+This application has two modules: a credit card payment management Rest API using [Laravel](https://laravel.com/) and a web interface for making credit card payments using [React](https://react.dev/).
 
 ### API
 
