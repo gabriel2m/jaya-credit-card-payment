@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+cd "$(dirname "$0")"
+
+if ! docker info > /dev/null 2>&1; then
+    echo "Docker not found."
+
+    exit 1
+fi
+
+docker run --rm --interactive --tty \
+           --volume $PWD:/app \
+           --user $(id -u):$(id -g) \
+           composer install
+
+cp .env.example .env
+
+SAIL="$PWD/vendor/bin/sail"
+
+$SAIL up -d; echo
+$SAIL npm install; echo
+$SAIL artisan key:generate; echo
+$SAIL artisan migrate; echo
+$SAIL artisan passport:keys; echo
+$SAIL artisan passport:client --client --name=DefaultClient
