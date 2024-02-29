@@ -71,4 +71,16 @@ class StorePaymentRequest extends FormRequest
             ],
         ];
     }
+
+    /**
+     * Custom attribute namesfor validator errors.
+     */
+    public function attributes(): array
+    {
+        return [
+            'payer.email' => 'payer email',
+            'payer.identification.type' => 'payer identification type',
+            'payer.identification.number' => 'payer identification number',
+        ];
+    }
 }
