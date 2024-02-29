@@ -20,7 +20,7 @@ The API its prefixed with '**rest**' and counts with the following endpoints:
 - \[PATCH\] **/payments/{id}** - confirm a payment
 - \[DELETE\] **/payments/{id}** - cancel a payment
 
-Default root url: [http://localhost/rest/](http://localhost/rest/)
+Default url: [http://localhost/rest/](http://localhost/rest/)
 
 To access the API you need to have a valid OAuth JWT token.
 
