@@ -84,6 +84,7 @@ export default function Login({ status, canResetPassword }) {
                     >
                         Not registered?
                     </Link>
+
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
