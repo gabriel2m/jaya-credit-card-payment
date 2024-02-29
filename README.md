@@ -20,7 +20,29 @@ The API its prefixed with '**rest**' and counts with the following endpoints:
 - \[PATCH\] **/payments/{id}** - confirm a payment
 - \[DELETE\] **/payments/{id}** - cancel a payment
 
-API default root url: [http://localhost/rest/](http://localhost/rest/)
+Default root url: [http://localhost/rest/](http://localhost/rest/)
+
+To access the API you need to have a valid OAuth JWT token.
+
+OAuth API default url: [http://localhost/oauth](http://localhost/oauth)
+
+The OAuth support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate client credentials grant tokens.
+
+#### Create OAuth JWT token
+
+Default url: [http://localhost/oauth/token](http://localhost/oauth/token)
+
+You can create a token by making a **POST** request to the token endpoint using the following payload:
+```json
+{
+  "grant_type": "client_credentials",
+  "client_id": "CLIENT_ID",
+  "client_secret": "CLIENT_SECRET",
+  "scope": "*"
+}
+```
+
+For more details access the [Laravel Passport](https://laravel.com/docs/10.x/passport) documentation.
 
 ## Install
 
@@ -31,6 +53,8 @@ Once you have them you just need to run the **install** script.
 ```sh
 sh install
 ```
+
+**Don't forget** to save Client ID and Client secret.
 
 After install you **need** to set the following environment variables on your .env file:
 - **VITE_MERCADO_PAGO_PUBLIC_KEY** - mercado pago public key, you can learn how to get this value on: [https://www.mercadopago.com.br/help/20214](https://www.mercadopago.com.br/help/20214)
