@@ -151,10 +151,6 @@ export default function PaymentForm() {
                 identificationNumber: inputValue('payer.identification.number'),
             });
         } catch (error) {
-            if (error.status != 400) {
-                return failAlert();
-            }
-
             return failAlert('Invalid payment details.');
         }
 
