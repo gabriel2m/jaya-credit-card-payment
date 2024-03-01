@@ -20,18 +20,18 @@ The API its prefixed with '**/rest**' and counts with the following endpoints:
 
 Default url: [http://localhost/rest](http://localhost/rest)
 
-To access the API you need to have a valid OAuth JWT token.
+To access the API you need to have a valid OAuth2 JWT token.
 
-OAuth API default url: [http://localhost/oauth](http://localhost/oauth)
+OAuth2 API default url: [http://localhost/oauth](http://localhost/oauth)
 
-The OAuth support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate the access tokens.
+The OAuth2 support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate the access tokens.
 
 If you want to create another client:
 ```sh
 ./vendor/bin/sail artisan passport:client --client
 ```
 
-#### Create OAuth JWT token
+#### Create OAuth2 JWT token
 Default url: [http://localhost/oauth/token](http://localhost/oauth/token)
 
 You can create a token by making a **POST** request to the token endpoint using the following payload:
