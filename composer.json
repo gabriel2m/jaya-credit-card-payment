@@ -2,6 +2,7 @@
     "require": {
         "php": "^8.1",
         "brick/money": "^0.8.1",
+        "darkaonline/l5-swagger": "^8.5",
         "doctrine/dbal": "^3.5.1",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.3",
@@ -24,6 +25,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Docs\\": "docs/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
