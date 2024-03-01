@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Contracts\Services\PaymentService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ConfirmPaymentRequest;
-use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\Api\ConfirmPaymentRequest;
+use App\Http\Requests\Api\StorePaymentRequest;
 use App\Http\Resources\PaymentResource;
 use App\Models\Payment;
 use Illuminate\Http\Request;
