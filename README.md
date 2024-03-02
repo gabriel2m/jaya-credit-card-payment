@@ -119,6 +119,8 @@ You can also edit:
 
 You can see more configs in the Laravel [documentation](https://laravel.com/docs/10.x/configuration).
 
+Once installed you can access all the applications links listed on the sections above.
+
 ## Test
 Command to run the application tests:
 ```sh
