@@ -6,6 +6,19 @@
     </picture>
 </p>
 
+## Table of contents
+* [Getting Started](#getting-started)
+  * [API](#api)
+      * [Crating a OAuth2 JWT token](#crating-a-oauth2-jwt-token)
+      * [Swagger](#swagger)
+          * [api-docs.json](#api-docsjson)
+          * [Swagger UI](#swagger-ui)
+  * [Web Interface](#web-interface)
+      * [Mailpit](#mailpit)
+  * [CLI](#cli)
+* [Install](#install)
+* [Test](#test)
+  
 ## Getting Started
 This application has two modules: a credit card payment management Rest API using [Laravel](https://laravel.com/) and a web interface for making credit card payments using [React](https://react.dev/).
 
