@@ -59,7 +59,7 @@ A json file with the OpenAPI v3 documentation of the API: [api-docs.json](https:
 
 Default url: [http://localhost/rest/docs](http://localhost/rest/docs)
 
-For successfully make requests via Swagger UI first you **need** to generate a OAuth2 JWT token. You can do that by clicking on the **Authorize** button:
+In order to successfully make requests via Swagger UI first you **need** to generate a OAuth2 JWT token. You can do that by clicking on the **Authorize** button:
 <img alt="welcome page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/swagger-ui-authorize-btn.png?raw=true" />
 
 Then you just have to provide your client credentials and click on the Authorize button and your further requests will use the generated token:
@@ -118,3 +118,9 @@ You can also edit:
 - **CURRENCY** - the default currency used to manage the payment transaction amount, needs to be a valid currency code - see  [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (default: BRL)
 
 You can see more configs in the Laravel [documentation](https://laravel.com/docs/10.x/configuration).
+
+## Test
+Command to run the application tests:
+```sh
+./vendor/bin/sail artisan test
+```
