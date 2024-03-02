@@ -17,7 +17,7 @@ class IndexTest extends TestCase
     public function test_needs_valid_token(): void
     {
         $this
-            ->getJson(
+            ->get(
                 uri: route('payments.index'),
                 headers: ['Authorization' => 'Bearer not-valid-token']
             )
@@ -33,7 +33,7 @@ class IndexTest extends TestCase
         Payment::factory($perPage + 1)->create();
 
         $this
-            ->getJson(route('payments.index'))
+            ->get(route('payments.index'))
             ->assertStatus(Response::HTTP_OK)
             ->assertJson([
                 'data' => PaymentResource::collection(

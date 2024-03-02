@@ -17,7 +17,7 @@ class CancelTest extends TestCase
     public function test_needs_valid_token(): void
     {
         $this
-            ->deleteJson(
+            ->delete(
                 route('payments.cancel', Payment::factory()->create()),
                 headers: ['Authorization' => 'Bearer not-valid-token']
             )
@@ -27,7 +27,7 @@ class CancelTest extends TestCase
     public function test_needs_valid_id(): void
     {
         $this
-            ->deleteJson(route('payments.cancel', 'invalid'))
+            ->delete(route('payments.cancel', 'invalid'))
             ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
@@ -38,7 +38,7 @@ class CancelTest extends TestCase
         $payment = Payment::factory()->create();
 
         $this
-            ->deleteJson(route('payments.cancel', $payment))
+            ->delete(route('payments.cancel', $payment))
             ->assertStatus(Response::HTTP_NO_CONTENT);
 
         $this->assertDatabaseHas($payment->getTable(), [

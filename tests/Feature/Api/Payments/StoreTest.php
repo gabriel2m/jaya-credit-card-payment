@@ -18,7 +18,7 @@ class StoreTest extends TestCase
     public function test_needs_valid_token(): void
     {
         $this
-            ->postJson(
+            ->post(
                 route('payments.store'),
                 headers: ['Authorization' => 'Bearer not-valid-token']
             )

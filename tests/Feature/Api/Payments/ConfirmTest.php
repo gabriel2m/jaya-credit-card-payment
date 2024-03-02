@@ -17,7 +17,7 @@ class ConfirmTest extends TestCase
     public function test_needs_valid_token(): void
     {
         $this
-            ->patchJson(
+            ->patch(
                 route('payments.confirm', Payment::factory()->create()),
                 headers: ['Authorization' => 'Bearer not-valid-token']
             )
@@ -27,7 +27,7 @@ class ConfirmTest extends TestCase
     public function test_needs_valid_id(): void
     {
         $this
-            ->patchJson(route('payments.confirm', 'invalid'))
+            ->patch(route('payments.confirm', 'invalid'))
             ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
@@ -42,7 +42,7 @@ class ConfirmTest extends TestCase
         $old = $payment->toArray();
 
         $this
-            ->patchJson(route('payments.confirm', $payment), $data)
+            ->patch(route('payments.confirm', $payment), $data)
             ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
 
         $new = $payment->refresh()->toArray();
@@ -67,7 +67,7 @@ class ConfirmTest extends TestCase
         ];
 
         $this
-            ->patchJson(route('payments.confirm', $payment), $data)
+            ->patch(route('payments.confirm', $payment), $data)
             ->assertStatus(Response::HTTP_NO_CONTENT);
 
         $data['id'] = $payment->id;

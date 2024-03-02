@@ -17,7 +17,7 @@ class ShowTest extends TestCase
     public function test_needs_valid_token(): void
     {
         $this
-            ->getJson(
+            ->get(
                 route('payments.show', Payment::factory()->create()),
                 headers: ['Authorization' => 'Bearer not-valid-token']
             )
@@ -27,7 +27,7 @@ class ShowTest extends TestCase
     public function test_needs_valid_id(): void
     {
         $this
-            ->getJson(route('payments.show', 'invalid'))
+            ->get(route('payments.show', 'invalid'))
             ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
@@ -38,7 +38,7 @@ class ShowTest extends TestCase
         $payment = Payment::factory()->create();
 
         $this
-            ->getJson(route('payments.show', $payment))
+            ->get(route('payments.show', $payment))
             ->assertStatus(Response::HTTP_OK)
             ->assertExactJson([
                 'data' => PaymentResource::make($payment)->resolve(),
