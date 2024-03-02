@@ -28,7 +28,7 @@ OAuth2 API default url: [http://localhost/oauth](http://localhost/oauth)
 
 The OAuth2 support it's implemented via [Laravel Passport](https://laravel.com/docs/10.x/passport), for convenience the install script creates a default client whose credentials can be used to generate the access tokens.
 
-If you want to create another client:
+But you can create another client if you want or in case you lost the default client credentials:
 ```sh
 ./vendor/bin/sail artisan passport:client --client
 ```
