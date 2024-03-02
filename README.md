@@ -20,6 +20,8 @@ The API its prefixed with '**/rest**' and counts with the following endpoints:
 
 Default url: [http://localhost/rest](http://localhost/rest)
 
+The full documentation it's available via [Swagger](https://swagger.io/) as shown below.
+
 To access the API you need to have a valid OAuth2 JWT token.
 
 OAuth2 API default url: [http://localhost/oauth](http://localhost/oauth)
@@ -31,7 +33,7 @@ If you want to create another client:
 ./vendor/bin/sail artisan passport:client --client
 ```
 
-#### Create OAuth2 JWT token
+#### Crating a OAuth2 JWT token
 Default url: [http://localhost/oauth/token](http://localhost/oauth/token)
 
 You can create a token by making a **POST** request to the token endpoint using the following payload:
@@ -45,6 +47,23 @@ You can create a token by making a **POST** request to the token endpoint using 
 ```
 
 For more details access the Laravel Passport [documentation](https://laravel.com/docs/10.x/passport).
+
+#### Swagger
+The API documentation it's supported using [Swagger](https://swagger.io/) and you have two ways to access it:
+
+##### api-docs.json
+A json file with the OpenAPI v3 documentation of the API: [api-docs.json](https://raw.githubusercontent.com/gabriel2m/jaya-credit-card-payment/master/storage/api-docs/api-docs.json)
+
+##### Swagger UI
+[Swagger UI](https://swagger.io/tools/swagger-ui/) it's a web interface that allows to visualize and interact with the API’s resources.
+
+Default url: [http://localhost/rest/docs](http://localhost/rest/docs)
+
+For successfully make requests via Swagger UI first you **need** to generate a OAuth2 JWT token. You can do that by clicking on the **Authorize** button:
+<img alt="welcome page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/swagger-ui-authorize-btn.png?raw=true" />
+
+Then you just have to provide your client credentials and click on the Authorize button and your further requests will use the generated token:
+<img alt="welcome page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/swagger-ui-authorize-modal.png?raw=true" />
 
 ### Web Interface
 Default url: [http://localhost](http://localhost)
@@ -64,15 +83,17 @@ Once created you're redirected to the dashboard page were is the payment form:
 Default url: [http://localhost:8025](http://localhost:8025)
 
 ### CLI
-For the docker environment and cli commands we use [Sail](https://laravel.com/docs/10.x/sail). The commands list:
+For the docker environment and cli commands we use [Sail](https://laravel.com/docs/10.x/sail). 
+
+See the commands list:
 ```sh
 ./vendor/bin/sail
 ```
-If want to configure a shell alias:
+Case you want to configure a shell alias:
 ```sh
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 ```
-Start the application:
+Start application command:
 ```sh
 ./vendor/bin/sail up -d
 ```
@@ -81,7 +102,7 @@ For more details access the sail [documentation](https://laravel.com/docs/10.x/s
 ## Install
 To install this application first you have to have installed **[docker](https://docs.docker.com/engine/install)** and **[docker compose](https://docs.docker.com/compose/install)**.
 
-Once you have them you just need to run the **install** script.
+Once you have them you can run the **install** script.
 
 ```sh
 sh install
@@ -96,4 +117,4 @@ You can also edit:
 - **NOTIFICATION_URL** - the notification url used on payment creation (default: https://webhook.site/19cd79e4-2df8-4ff1-80c6-647f6172f801)
 - **CURRENCY** - the default currency used to manage the payment transaction amount, needs to be a valid currency code - see  [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (default: BRL)
 
-See more configs in the Laravel [documentation](https://laravel.com/docs/10.x).
+You can see more configs in the Laravel [documentation](https://laravel.com/docs/10.x/configuration).
