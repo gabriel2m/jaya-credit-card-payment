@@ -20,10 +20,10 @@
 * [Test](#test)
   
 ## Getting Started
-This application has two modules: a credit card payment management Rest API using [Laravel](https://laravel.com/) and a web interface for making credit card payments using [React](https://react.dev/).
+This application has two modules: a credit card payment management Rest API using [Laravel](https://laravel.com/) and a responsive web interface for making credit card payments using [React](https://react.dev/).
 
 ### API
-The API its prefixed with '**/rest**' and counts with the following endpoints:
+The API it's prefixed with '**/rest**' and counts with the following endpoints:
 
 - \[POST\] **/payments** - create a payment
 - \[​GET\] **/payments** - paginated payments list
@@ -91,7 +91,7 @@ Once created you're redirected to the dashboard page were is the payment form:
 <img alt="dashboard page" src="https://github.com/gabriel2m/jaya-credit-card-payment/blob/master/docs/img/dashboard.png?raw=true" />
 
 #### Mailpit
-[Mailpit](https://mailpit.axllent.org) is the default application email host, you can use him to access the sent emails.
+[Mailpit](https://mailpit.axllent.org) is the default application email host and you can use him to access the sent emails.
 
 Default url: [http://localhost:8025](http://localhost:8025)
 
