@@ -139,3 +139,7 @@ Command to run the application tests:
 ```sh
 ./vendor/bin/sail artisan test
 ```
+Command to run eslint:
+```sh
+./vendor/bin/sail npm run lint
+```
