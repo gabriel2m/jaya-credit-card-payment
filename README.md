@@ -128,7 +128,7 @@ After install you **need** to set the following environment variables in your .e
 
 You can also edit:
 - **NOTIFICATION_URL** - the notification url used on payment creation (default: https://webhook.site/19cd79e4-2df8-4ff1-80c6-647f6172f801)
-- **CURRENCY** - the default currency used to manage the payment transaction amount, needs to be a valid currency code - see  [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) (default: BRL)
+- **CURRENCY** - the default currency used to manage the payment transaction amount, needs to be a valid [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code (default: BRL)
 
 You can see more configs in the Laravel [documentation](https://laravel.com/docs/10.x/configuration).
 
