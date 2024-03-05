@@ -54,6 +54,9 @@ use Symfony\Component\HttpFoundation\Response;
                 ),
             ]),
         ])),
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+            properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
+        )),
     ]
 ), OA\Post(
     path: '/payments',
@@ -80,6 +83,9 @@ use Symfony\Component\HttpFoundation\Response;
                 ]
             ),
         ])),
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+            properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
+        )),
     ]
 ), OA\Get(
     path: '/payments/{id}',
@@ -88,8 +94,11 @@ use Symfony\Component\HttpFoundation\Response;
     description: 'Payment details',
     responses: [
         new OA\Response(response: Response::HTTP_OK, description: 'OK', content: new OA\JsonContent(ref: '#/components/schemas/PaymentResource')),
-        new OA\Response(response: '404', description: 'payment not found with the specified id', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
+        )),
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+            properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
 ), OA\Delete(
@@ -99,8 +108,11 @@ use Symfony\Component\HttpFoundation\Response;
     description: 'Cancel payment',
     responses: [
         new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'canceled'),
-        new OA\Response(response: '404', description: 'payment not found with the specified id', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
+        )),
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+            properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
 ), OA\Patch(
@@ -111,8 +123,11 @@ use Symfony\Component\HttpFoundation\Response;
     requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: '#/components/schemas/ConfirmPaymentRequest')),
     responses: [
         new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'confirmed'),
-        new OA\Response(response: '404', description: 'payment not found with the specified id', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
+        )),
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+            properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
 ), OA\Schema(schema: 'PaymentResource', properties: [
