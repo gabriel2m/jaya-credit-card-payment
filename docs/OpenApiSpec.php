@@ -54,7 +54,7 @@ use Symfony\Component\HttpFoundation\Response;
                 ),
             ]),
         ])),
-        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'invalid token', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
@@ -83,7 +83,7 @@ use Symfony\Component\HttpFoundation\Response;
                 ]
             ),
         ])),
-        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'invalid token', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
@@ -97,7 +97,7 @@ use Symfony\Component\HttpFoundation\Response;
         new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
         )),
-        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'invalid token', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
@@ -107,11 +107,11 @@ use Symfony\Component\HttpFoundation\Response;
     tags: ['payments'],
     description: 'Cancel payment',
     responses: [
-        new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'canceled'),
+        new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'payment canceled'),
         new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
         )),
-        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'invalid token', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
     ]
@@ -122,13 +122,24 @@ use Symfony\Component\HttpFoundation\Response;
     description: 'Confirm payment',
     requestBody: new OA\RequestBody(required: true, content: new OA\JsonContent(ref: '#/components/schemas/ConfirmPaymentRequest')),
     responses: [
-        new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'confirmed'),
+        new OA\Response(response: Response::HTTP_NO_CONTENT, description: 'payment confirmed'),
         new OA\Response(response: Response::HTTP_NOT_FOUND, description: 'payment not found with the specified id', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Payment not found with the specified id')]
         )),
-        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'Invalid token', content: new OA\JsonContent(
+        new OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'invalid token', content: new OA\JsonContent(
             properties: [new OA\Property(property: 'message', type: 'string', default: 'Unauthenticated.')]
         )),
+        new OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: 'invalid data provided', content: new OA\JsonContent(properties: [
+            new OA\Property(property: 'message', type: 'string', example: 'The selected status is invalid.'),
+            new OA\Property(
+                property: 'errors',
+                type: 'object',
+                properties: [new OA\Property(type: 'array', description: 'attibute name', items: new OA\Items(type: 'string', description: 'error message'))],
+                example: [
+                    'status' => ['The selected status is invalid.'],
+                ]
+            ),
+        ])),
     ]
 ), OA\Schema(schema: 'PaymentResource', properties: [
     new OA\Property(property: 'id', type: 'string', example: '84e8adbf-1a14-403b-ad73-d78ae19b59bf'),
